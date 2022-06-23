@@ -13,8 +13,12 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('products', ProductController::class);
 
 // Route::get('/', function () {
-//     return view('index');
-// });
+    //     return view('index');
+    // });
+    
+    Auth::routes();
+    
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('products', ProductController::class)->middleware(['auth']);
