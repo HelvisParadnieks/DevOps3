@@ -45,6 +45,27 @@ class RegisterController extends Controller
     }
 
     /**
+     * 
+     *  Old password validator
+     * 
+     * 
+     */
+
+
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'confirmed', Password::min(8) 
+    //         ->letters()
+    //         ->mixedCase()
+    //         ->numbers()
+    //         ->symbols()
+    //         ->uncompromised()],
+    //     ]);
+    // }
+ /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -53,14 +74,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Password::min(8) 
-            ->letters()
-            ->mixedCase()
-            ->numbers()
-            ->symbols()
-            ->uncompromised()],
+            'name' => 'required|string|not_regex:/[0-9]/|max:255|not_regex:/[@$!%*#?&_]/',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|string|regex:/[0-9]/|regex:/[A-Z]/|regex:/[a-z]/|regex:/[@$!%*#?&_]/',
+        ], [
+            'name.required' => 'Full name',
+            'password.required' => 'The password must contain one upper and lowercase letter, one symbol and one number',
+            'password.regex' => 'Your password is missing requirments',
+            'password.min' => 'Your passwords do not match',
+            'email.email'=> 'The email adress must be valid',
+            'name.not_regex' => 'Use only letters for this field',
         ]);
     }
 
