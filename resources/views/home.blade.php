@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Hope Page</div>
+                <div class="card-header">Home Page</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,7 +15,7 @@
                     @endif
 
                    <p>
-                        Welcome to my shoping list CRUD website!
+                        Welcome to my shopping list CRUD website!
                    </p>
                 </div>
             </div>
