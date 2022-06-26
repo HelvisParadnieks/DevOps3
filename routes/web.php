@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,7 @@ use App\Http\Controllers\ProductController;
     
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('products', ProductController::class)->middleware(['auth']);
+
+    if(env('APP_ENV') === 'production') {
+        URL::forceScheme('https');
+    }
