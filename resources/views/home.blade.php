@@ -15,7 +15,7 @@
                     @endif
 
                    <p>
-                        Welcome to my shopping list CRUD website!
+                        Welcome to my shoping list CRUD website!
                    </p>
                 </div>
             </div>
